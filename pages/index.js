@@ -16,16 +16,52 @@ import {
   Button,
   Badge,
   GridItem,
-  Grid
+  Grid,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  VStack
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Image from 'next/image'
 import PorfolioItem from '../components/portfolioitem'
+import { useState } from 'react'
+import { send } from 'emailjs-com'
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
 })
 const Page = () => {
+  // Email functionality
+  const [toSend, setToSend] = useState({
+    from_name: '',
+    to_name: 'Jesus Cazares',
+    message: '',
+    reply_to: ''
+  })
+
+  const onSubmit = e => {
+    e.preventDefault()
+    console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+    send(
+      process.env.NEXT_PUBLIC_SERVICE_ID,
+      process.env.NEXT_PUBLIC_TEMPLATE_ID,
+      toSend,
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    )
+      .then(response => {
+        console.log('SUCCESS!', response.status, response.text)
+      })
+      .catch(err => {
+        console.log('FAILED...', err)
+      })
+  }
+
+  const handleChange = e => {
+    setToSend({ ...toSend, [e.target.name]: e.target.value })
+  }
+
   return (
     <Container id="home">
       {/* INTRODUCTION WITH PICTURE */}
@@ -63,11 +99,11 @@ const Page = () => {
             overflow="hidden"
           >
             <ProfileImage
-              src="/images/pf.jpg"
               alt="Profile image"
               borderRadius="full"
               width="100%"
               height="100%"
+              src="/images/profile.png"
             />
           </Box>
         </Box>
@@ -87,7 +123,7 @@ const Page = () => {
       </Heading>
       {/* <SimpleGrid columns={[1, 1, 2]} gap={2} pt='2' alignItems='center'> */}
 
-      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+      <Grid templateColumns={['repeat(2, 1fr)']} gap={6}>
         <GridItem>
           <PorfolioItem
             image="/images/portfolio1.png"
@@ -126,7 +162,44 @@ const Page = () => {
         </GridItem>
       </Grid>
 
-      {/* </SimpleGrid> */}
+      <Heading as="h3" variant="section-title" id="contact">
+        Contact
+      </Heading>
+      <p style={{ textAlign: 'justify' }}>
+        Do you need a software developer for your web project? Feel free to
+        leave me a message regarding a project or any questions you may have
+        about my skillset.
+      </p>
+      <form onSubmit={onSubmit}>
+        <FormControl mt={4}>
+          <VStack>
+            <Input
+              placeholder="Name"
+              name="from_name"
+              value={toSend.from_name}
+              onChange={handleChange}
+            />
+            <Input
+              placeholder="Email"
+              name="reply_to"
+              value={toSend.reply_to}
+              onChange={handleChange}
+            />
+            <Textarea
+              placeholder="Leave a message..."
+              name="message"
+              value={toSend.message}
+              onChange={handleChange}
+            />
+            <Flex alignItems="flex-end" w="100%">
+              <Spacer />
+              <Button type="submit" colorScheme="blue">
+                Send
+              </Button>
+            </Flex>
+          </VStack>
+        </FormControl>
+      </form>
     </Container>
   )
 }

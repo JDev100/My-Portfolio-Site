@@ -14,13 +14,16 @@ import {
   IconButton,
   useColorModeValue,
   useColorMode,
-  Button
+  Button,
+  Icon,
+  HStack
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggler from './themetoggler'
-// import { IoLogoGithub } from 'react-icons/io5'
+import { AiFillGithub } from 'react-icons/ai'
+import { HiDocumentText } from 'react-icons/hi'
 
-const LinkItem = ({ href, path, children }) => {
+const LinkItem = ({ href, path, children, ...props }) => {
   const active = path === href
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
   return (
@@ -29,6 +32,7 @@ const LinkItem = ({ href, path, children }) => {
         p={2}
         bg={active ? 'glassTeal' : undefined}
         color={active ? '#202023' : inactiveColor}
+        {...props}
       >
         {children}
       </Link>
@@ -59,7 +63,9 @@ const Navbar = props => {
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-            <Logo />
+            <NextLink href="/" passHref>
+              <Logo />
+            </NextLink>
           </Heading>
         </Flex>
 
@@ -74,15 +80,26 @@ const Navbar = props => {
           <LinkItem href="#portfolio" path={path}>
             Portfolio
           </LinkItem>
-          <LinkItem href="posts" path={path}>
-            Posts
+          <LinkItem href="#contact" path={path}>
+            Contact
+          </LinkItem>
+          <LinkItem
+            href="#contact"
+            path={path}
+            display="inline-flex"
+            alignItems="center"
+            gap={1}
+          >
+            <HiDocumentText /> Resume
           </LinkItem>
         </Stack>
-        {/* <Button onClick={toggleColorMode}>
-          Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-        </Button> */}
         <Box flex={1} align="right">
-          <ThemeToggler/>
+          <ThemeToggler />
+          <NextLink href="https://github.com/JDev100" passHref>
+            <a target="_blank">
+              <IconButton ml={2} icon={<AiFillGithub />} fontSize="larger" />
+            </a>
+          </NextLink>
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu>
               <MenuButton
@@ -93,13 +110,18 @@ const Navbar = props => {
               />
               <MenuList>
                 <NextLink href="/" passHref>
-                  <MenuItem as={Link}>About</MenuItem>
+                  <MenuItem as={Link}>Home</MenuItem>
                 </NextLink>
                 <NextLink href="#portfolio" passHref>
                   <MenuItem as={Link}>Portfolio</MenuItem>
                 </NextLink>
-                <NextLink href="/posts" passHref>
-                  <MenuItem as={Link}>Posts</MenuItem>
+                <NextLink href="#contact" passHref>
+                  <MenuItem as={Link}>Contact</MenuItem>
+                </NextLink>
+                <NextLink href="#contact">
+                  <MenuItem as={Link}>
+                    <HiDocumentText /> Resume
+                  </MenuItem>
                 </NextLink>
               </MenuList>
             </Menu>

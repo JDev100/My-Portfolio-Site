@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next  dev -H 0.0.0.0",
-    "build": "next builld",
+    "build": "next build",
     "prettier": "prettier -write .",
     "lint": "next lint"
   },
@@ -16,9 +16,11 @@
     "@chakra-ui/icons": "^2.0.9",
     "@chakra-ui/react": "^2.2.8",
     "@emotion/styled": "^11.10.0",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^7.2.1",
     "next": "^12.2.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0"
   }
 }

@@ -12,13 +12,13 @@ import {
 
 const PorfolioItem = ({ image, badges, title, desc, href }) => {
   return (
-    <Box w="225px" >
+    <Box w="225px" mx='auto'>
       <Box w="225px" h="127px">
         <img src={image} alt={image} />
       </Box>
       <Box p={0} pt="0">
         <Wrap alignItems="center" mt={2}>
-          {badges.map(badge => (
+          {badges.map(badge=> (
             <WrapItem>
               <Badge variant="solid" colorScheme="blue" rounded="full" px={2}>
                 {badge}
