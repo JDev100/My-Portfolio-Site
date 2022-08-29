@@ -114,7 +114,7 @@ const Page = () => {
       >
         Hello, I&apos;m a full-stack developer based in California
       </Box> */}
-      <Flex>
+      <Flex mt={4}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
             Jesus Cazares
