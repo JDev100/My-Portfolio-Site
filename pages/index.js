@@ -21,13 +21,16 @@ import {
   FormLabel,
   Input,
   Textarea,
-  VStack
+  VStack,
+  useColorMode
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Image from 'next/image'
 import PorfolioItem from '../components/portfolioitem'
 import { useState } from 'react'
 import { send } from 'emailjs-com'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -43,14 +46,39 @@ const Page = () => {
 
   const onSubmit = e => {
     e.preventDefault()
+    const outgoing = toSend
+    setToSend({
+      from_name: '',
+      to_name: 'Jesus Cazares',
+      message: '',
+      reply_to: ''
+    })
+    toast.info('Sending message...', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
     send(
       process.env.NEXT_PUBLIC_SERVICE_ID,
       process.env.NEXT_PUBLIC_TEMPLATE_ID,
-      toSend,
+      outgoing,
       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
     )
       .then(response => {
         console.log('SUCCESS!', response.status, response.text)
+        toast.success('Thank you, I got your message!', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        })
       })
       .catch(err => {
         console.log('FAILED...', err)
@@ -63,6 +91,17 @@ const Page = () => {
 
   return (
     <Container id="home">
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+        theme='colored'
+      />
       {/* INTRODUCTION WITH PICTURE */}
 
       {/* Come back later to integrate cool three.js feature */}
