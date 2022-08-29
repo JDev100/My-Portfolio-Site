@@ -84,7 +84,7 @@ const Navbar = props => {
             Contact
           </LinkItem>
           <LinkItem
-            href="#contact"
+            href="/resume.pdf"
             path={path}
             display="inline-flex"
             alignItems="center"
@@ -118,7 +118,7 @@ const Navbar = props => {
                 <NextLink href="#contact" passHref>
                   <MenuItem as={Link}>Contact</MenuItem>
                 </NextLink>
-                <NextLink href="#contact">
+                <NextLink href="/resume.pdf">
                   <MenuItem as={Link}>
                     <HiDocumentText /> Resume
                   </MenuItem>

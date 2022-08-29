@@ -43,7 +43,6 @@ const Page = () => {
 
   const onSubmit = e => {
     e.preventDefault()
-    console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
     send(
       process.env.NEXT_PUBLIC_SERVICE_ID,
       process.env.NEXT_PUBLIC_TEMPLATE_ID,
@@ -66,7 +65,8 @@ const Page = () => {
     <Container id="home">
       {/* INTRODUCTION WITH PICTURE */}
 
-      <Box
+      {/* Come back later to integrate cool three.js feature */}
+      {/* <Box
         borderRadius="lg"
         bg={useColorModeValue('#f2f6f9', '#202023')}
         mb={6}
@@ -74,7 +74,7 @@ const Page = () => {
         alignContent="center"
       >
         Hello, I&apos;m a full-stack developer based in California
-      </Box>
+      </Box> */}
       <Flex>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
@@ -103,7 +103,7 @@ const Page = () => {
               borderRadius="full"
               width="100%"
               height="100%"
-              src="/images/profile.png"
+              src="/images/pf2.png"
             />
           </Box>
         </Box>
