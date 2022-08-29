@@ -165,7 +165,7 @@ const Page = () => {
       <Grid templateColumns={['repeat(2, 1fr)']} gap={6}>
         <GridItem>
           <PorfolioItem
-            image="/images/portfolio1.png"
+            image="/images/portfoliomanager.png"
             badges={['React', 'JS', 'CSS', 'HTML']}
             title="Portfolio Manager"
             desc="Webapp employing Yahoo Finance API to view stock info"
