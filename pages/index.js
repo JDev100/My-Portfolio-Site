@@ -177,7 +177,7 @@ const Page = () => {
             image="/images/ecommerce1.png"
             badges={['Next', 'Sanity.io', 'Stripe']}
             title="Ultimate Music Store"
-            desc="Ecommerce project that employs Stripe to recieve payments"
+            desc="Ecommerce project that employs Stripe to receive payments"
             href="https://ecommerce-next-sanity-stripe-k4bfq9vgy-jdev100.vercel.app/"
           />
         </GridItem>

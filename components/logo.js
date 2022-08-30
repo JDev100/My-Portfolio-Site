@@ -15,6 +15,7 @@ const LogoBox = styled.span`
 
   &:hover img {
     transform: rotate(20deg);
+    transition: ease-in-out;
   }
 `
 
