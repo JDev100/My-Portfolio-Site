@@ -52,7 +52,7 @@ const config = {
 const theme = extendTheme({
   config,
   components,
-  styles,
+  styles
 });
 
 export default theme;

@@ -19,7 +19,7 @@ const PorfolioItem = ({ image, badges, title, desc, href }) => {
       <Box p={0} pt="0">
         <Wrap alignItems="center" mt={2}>
           {badges.map(badge=> (
-            <WrapItem>
+            <WrapItem  key={badge}>
               <Badge variant="solid" colorScheme="blue" rounded="full" px={2}>
                 {badge}
               </Badge>

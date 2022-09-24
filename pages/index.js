@@ -162,7 +162,7 @@ const Page = () => {
       </Heading>
       {/* <SimpleGrid columns={[1, 1, 2]} gap={2} pt='2' alignItems='center'> */}
 
-      <Grid templateColumns={['repeat(2, 1fr)']} gap={6}>
+      <SimpleGrid columns={[1, 2, 2, 2]} spacing={10} mb={16}>
         <GridItem>
           <PorfolioItem
             image="/images/portfoliomanager.png"
@@ -199,7 +199,7 @@ const Page = () => {
             href="https://github.com/JDev100/Chat-App-Lite"
           />
         </GridItem>
-      </Grid>
+      </SimpleGrid>
 
       <Heading as="h3" variant="section-title" id="contact">
         Contact
